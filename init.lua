@@ -892,6 +892,22 @@ end,
 	"Konfekt/vim-wsl-copy-paste",
 	{
 		"f-person/git-blame.nvim",
+	},
+	{
+		"MunifTanjim/nui.nvim",
+	},
+	{
+		"jackMort/ChatGPT.nvim",
+		config = function()
+			require("chatgpt").setup({
+				-- optional configuration
+			})
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim"
+		}
 	}
 	-- LazyEnd
 })

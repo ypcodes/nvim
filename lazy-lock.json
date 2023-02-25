@@ -1,4 +1,5 @@
 {
+  "ChatGPT.nvim": { "branch": "main", "commit": "3f6fd348df53b9d15aa0a58709562cf0a3b4636a" },
   "Comment.nvim": { "branch": "master", "commit": "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" },
   "FTerm.nvim": { "branch": "master", "commit": "d1320892cc2ebab472935242d9d992a2c9570180" },
   "JABS.nvim": { "branch": "main", "commit": "6c020211aaa63c0b398a8d3cc6fa86679cf31490" },
@@ -15,6 +16,7 @@
   "dressing.nvim": { "branch": "master", "commit": "5f44f829481640be0f96759c965ae22a3bcaf7ce" },
   "formatter.nvim": { "branch": "master", "commit": "8a4c961330cc4688087f23d18fa7d2f1af9a4902" },
   "friendly-snippets": { "branch": "main", "commit": "6fa50a94ba5378bb73013a6e163376d8e69bd8a5" },
+  "git-blame.nvim": { "branch": "master", "commit": "1ad47c6454a5a53d3f4ffdd4022e84f4a6e376cb" },
   "gitsigns.nvim": { "branch": "main", "commit": "f388995990aba04cfdc7c3ab870c33e280601109" },
   "glow.nvim": { "branch": "main", "commit": "2bb4afb6e9dbc93993a1d7d4168dac08c74590ac" },
   "hop.nvim": { "branch": "v2", "commit": "90db1b2c61b820e230599a04fedcd2679e64bd07" },
@@ -34,6 +36,7 @@
   "neodev.nvim": { "branch": "main", "commit": "3c6e485bb3ff819c33e8f24847ba7d421d658569" },
   "neoformat": { "branch": "master", "commit": "16bd62efc3fcdcd0f6682ea47f1f6070850f9963" },
   "neoscroll.nvim": { "branch": "master", "commit": "d7601c26c8a183fa8994ed339e70c2d841253e93" },
+  "nui.nvim": { "branch": "main", "commit": "d147222a1300901656f3ebd5b95f91732785a329" },
   "nvim-autopairs": { "branch": "master", "commit": "6a5faeabdbcc86cfbf1561ae430a451a72126e81" },
   "nvim-cmp": { "branch": "main", "commit": "7a3b1e76f74934b12fda82158237c6ad8bfd3d40" },
   "nvim-dap": { "branch": "master", "commit": "fd291e970aa7c46ba2c49448f7d2c94cc7828f4e" },
