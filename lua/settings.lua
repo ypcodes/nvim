@@ -10,3 +10,6 @@ vim.cmd('set relativenumber')
 vim.o.cursorline = true
 vim.opt.shellslash = true
 vim.opt.termguicolors = true
+vim.o.textwidth = 80
+vim.o.colorcolumn = 80
+-- vim.o.autochdir = true
