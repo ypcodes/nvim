@@ -10,9 +10,6 @@ map('n', 'S', ':w<CR>', options)
 map('n', 'Z', ':wq<CR>', options)
 map('n', 'Q', ':q<CR>', options)
 
-map('n', '<leader> ', ':', options)
-
-
 map('n', '<leader>nc', ':e ~/.config/nvim/init.lua<CR>', options)
 map('n', '<leader>bn', ':bnext<CR> ', options)
 map('n', '<leader>bp', ':bprevious<CR> ', options)

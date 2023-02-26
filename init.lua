@@ -596,6 +596,7 @@ require("lazy").setup({
 		config = function()
 			local builtin = require('telescope.builtin')
 			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+			vim.keymap.set('n', '<leader> ', builtin.find_files, {})
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
@@ -887,12 +888,7 @@ end,
 			"nvim-telescope/telescope.nvim"
 		}
 	},
-	{
-		"b0o/mapx.nvim",
-		config = function()
-			local m = require'mapx'.setup{ global = true, whichkey = true }
-		end,
-	}
+	"tpope/vim-rsi",
 	-- LazyEnd
 })
 
