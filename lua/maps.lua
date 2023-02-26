@@ -19,4 +19,8 @@ map('n', '<leader>bd', ':bd<CR>', options)
 map('v', 'Y', '"+y', options)
 map('n', 'Y', '"+y', options)
 map('n', '<leader>cd', ':lcd %:p:h<CR>', options)
+map('i', '<A-x>', "<ESC>:", options)
+
+-- insert mode use emacs keybinding
+
 

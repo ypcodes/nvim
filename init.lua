@@ -3,7 +3,6 @@ local options= { noremap = true, silent = true }
 
 require('settings')
 require('maps')
-
 -- map
 -- local map = vim.api.nvim_set_keymap
 -- local options = { noremap = true, silent = true }
@@ -889,14 +888,41 @@ end,
 		}
 	},
 	"tpope/vim-rsi",
+
+
+	{
+		"aduros/ai.vim",
+		config = function()
+			vim.api.nvim_set_keymap("i", "<C-s>", "<Esc>:AI<CR>a", { noremap = true })
+			map('v', '<leader>f', ":AI fix grammar and spelling and replace slang and contractions with a formal academic writing style<CR>", {})
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim"
+		}
+
+	},
+	--[[ {
+		"dense-analysis/ale",
+	},
+	{
+		"ElPiloto/significant.nvim",
+	},
+	{
+		"dense-analysis/neural",
+		config = function()
+			require('neural').setup({
+				source = {
+					openai = {
+						api_key = vim.env.OPENAI_API_KEY,
+					},
+				},
+			})
+		end,
+	}, ]]
 	-- LazyEnd
 })
-
--- lsp config
-
-
--- vertical preview = 1
-vim.cmd("set cmdheight=1")
 
 -- colorscheme
 vim.cmd("colorscheme tokyonight-storm")
