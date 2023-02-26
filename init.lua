@@ -1,15 +1,3 @@
--- Define a global table to store mappings
-_G.mappings = {}
-
--- Define a function that sets a mapping and adds it to the table
---[[ local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-  -- Add the mapping to the table with mode and lhs as keys
-  _G.mappings[mode .. lhs] = {rhs = rhs, opts = options}
-end ]]
-
 local map = vim.api.nvim_set_keymap
 local options= { noremap = true, silent = true }
 
@@ -908,22 +896,7 @@ end,
 	-- LazyEnd
 })
 
-
--- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['pylsp'].setup {
-	capabilities = capabilities
-}
-
-require('lspconfig')['lua_ls'].setup {
-	capabilities = capabilities
-}
-
 -- lsp config
-require("mason-lspconfig").setup {
-	ensure_installed = { "lua_ls", "pylsp", "clangd" },
-}
 
 
 -- vertical preview = 1
