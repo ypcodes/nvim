@@ -14,8 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-vim.cmd("set cmdheight=0")
-
 -- use vimp to add maps
 -- local vimp = require('vimp')
 
@@ -47,7 +45,14 @@ require("lazy").setup({
 	{
 		"folke/neoconf.nvim",
 	},
-	"folke/neodev.nvim",
+	{
+		"folke/neodev.nvim",
+		config = function()
+			require("neodev").setup({
+				library = { plugins = { "nvim-dap-ui" }, types = true },
+			})
+		end,
+	},
 	{
 		"williamboman/mason.nvim",
 		config = function()
@@ -319,16 +324,6 @@ require("lazy").setup({
 		end,
 	},
 	{ "rafamadriz/friendly-snippets" },
-	--{
-	--	"L3MON4D3/LuaSnip",
-	--	-- follow latest release.
-	--	version = "<CurrentMajor>.*",
-	--	-- install jsregexp (optional!).
-	--	build = "make install_jsregexp",
-	--	config = function()
-	--		require("luasnip.loaders.from_vscode").lazy_load()
-	--	end,
-	--},
 	{
 		"hrsh7th/cmp-vsnip",
 		config = function()
@@ -630,6 +625,11 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 			vim.keymap.set("n", "<leader>ss", builtin.live_grep, {})
 			vim.keymap.set("n", "F", builtin.live_grep, {})
+			vim.keymap.set("n", "/", function()
+				require("telescope.builtin").current_buffer_fuzzy_find({
+					sorter = require("telescope.sorters").get_substr_matcher({}),
+				})
+			end, {})
 			require("telescope").setup({
 				extensions = {
 					fzf = {
@@ -857,7 +857,8 @@ require("lazy").setup({
 					inc_rename = false, -- enables an input dialog for inc-rename.nvim
 					lsp_doc_border = false, -- add a border to hover docs and signature help
 				},
-			})		end,
+			})
+		end,
 		requires = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
@@ -865,7 +866,7 @@ require("lazy").setup({
 			--   `nvim-notify` is only needed, if you want to use the notification view.
 			--   If not available, we use `mini` as the fallback
 			"rcarriga/nvim-notify",
-		}
+		},
 	},
 	{
 		"axieax/urlview.nvim",
@@ -913,7 +914,6 @@ require("lazy").setup({
 		},
 	},
 	"tpope/vim-rsi",
-
 	{
 		"aduros/ai.vim",
 		config = function()
@@ -931,31 +931,16 @@ require("lazy").setup({
 			"nvim-telescope/telescope.nvim",
 		},
 	},
-	--[[ {
-		"dense-analysis/ale",
-	},
 	{
-		"ElPiloto/significant.nvim",
+		"vijaymarupudi/nvim-fzf",
 	},
-	{
-		"dense-analysis/neural",
-		config = function()
-			require('neural').setup({
-				source = {
-					openai = {
-						api_key = vim.env.OPENAI_API_KEY,
-					},
-				},
-			})
-		end,
-	}, ]]
+	{ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
+	{ "liuchengxu/vim-clap" }, -- remenber to run: Clap install-binary
 	-- LazyEnd
 })
 
-vim.o.cmdheight = 0
 -- colorscheme
 vim.cmd("colorscheme tokyonight-storm")
-
 
 vim.cmd("imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'")
 vim.cmd("smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'")

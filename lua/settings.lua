@@ -13,4 +13,3 @@ vim.opt.termguicolors = true
 vim.o.textwidth = 80
 vim.o.colorcolumn = 80
 -- vim.o.autochdir = true
-vim.o.cmdheight = 0
