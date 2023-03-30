@@ -284,7 +284,7 @@ require("lazy").setup({
 					-- { name = 'snippy' }, -- For snippy users.
 				}, {
 					{ name = "buffer" },
-					{ name = "orgmode" },
+--					{ name = "orgmode" },
 				}),
 			})
 
@@ -342,86 +342,12 @@ require("lazy").setup({
 		"hrsh7th/vim-vsnip-integ",
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				-- A list of parser names, or "all" (the four listed parsers should always be installed)
-				ensure_installed = { "c", "lua", "vim", "help", "python" },
-
-				-- Install parsers synchronously (only applied to `ensure_installed`)
-				sync_install = true,
-
-				-- Automatically install missing parsers when entering buffer
-				-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-				auto_install = true,
-
-				-- List of parsers to ignore installing (for "all")
-				-- ignore_install = { "javascript" },
-
-				---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-				-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
-				highlight = {
-					enable = true,
-
-					-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-					-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-					-- the name of the parser)
-					-- list of language that will be disabled
-					disable = { "c", "rust" },
-					-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-					disable = function(lang, buf)
-						local max_filesize = 100 * 1024 -- 100 KB
-						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-						if ok and stats and stats.size > max_filesize then
-							return true
-						end
-					end,
-					-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-					-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-					-- Using this option may slow down your editor, and you may see some duplicate highlights.
-					-- Instead of true it can also be a list of languages
-					additional_vim_regex_highlighting = false,
-				},
-			})
-		end,
-	},
-
-	{
-		"nvim-orgmode/orgmode",
-		config = function()
-			-- init.lua
-
-			-- Load custom treesitter grammar for org filetype
-			require("orgmode").setup_ts_grammar()
-
-			-- Treesitter configuration
-			require("nvim-treesitter.configs").setup({
-				-- If TS highlights are not enabled at all, or disabled via `disable` prop,
-				-- highlighting will fallback to default Vim syntax highlighting
-				highlight = {
-					enable = true,
-					-- Required for spellcheck, some LaTex highlights and
-					-- code block highlights that do not have ts grammar
-					additional_vim_regex_highlighting = { "org" },
-				},
-				ensure_installed = { "org" }, -- Or run :TSUpdate org
-			})
-
-			require("orgmode").setup({
-				org_agenda_files = { "~/org/*" },
-				org_default_notes_file = "~/org/note.org",
-			})
-		end,
-	},
-	{
 		"akinsho/org-bullets.nvim",
 		config = function()
 			require("org-bullets").setup()
 		end,
 	},
-	{ "dhruvasagar/vim-table-mode" },
+	--{ "dhruvasagar/vim-table-mode" },
 	{
 		"michaelb/sniprun",
 		config = function()
@@ -526,14 +452,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
-		"lewis6991/gitsigns.nvim",
-		-- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
-		config = function()
-			require("gitsigns").setup()
-		end,
-	},
-
 	"nixprime/cpsm",
 
 	{
@@ -548,12 +466,6 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			require("lualine").setup()
-		end,
-	},
-	{
-		"rebelot/kanagawa.nvim",
-		config = function()
-			local default_colors = require("kanagawa.colors").setup()
 		end,
 	},
 	{
@@ -624,7 +536,6 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 			vim.keymap.set("n", "<leader>ss", builtin.live_grep, {})
-			vim.keymap.set("n", "F", builtin.live_grep, {})
 			vim.keymap.set("n", "/", function()
 				require("telescope.builtin").current_buffer_fuzzy_find({
 					sorter = require("telescope.sorters").get_substr_matcher({}),
@@ -786,24 +697,6 @@ require("lazy").setup({
 	},
 	{ "kevinhwang91/promise-async" },
 	{
-		"kevinhwang91/nvim-ufo",
-		requires = "kevinhwang91/promise-async",
-		config = function()
-			vim.o.foldcolumn = "1" -- '0' is not bad
-			vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-			vim.o.foldlevelstart = 99
-			vim.o.foldenable = true
-			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-			require("ufo").setup({
-				provider_selector = function(bufnr, filetype, buftype)
-					return { "treesitter", "indent" }
-				end,
-			})
-			--
-		end,
-	},
-	{
 		"numToStr/FTerm.nvim",
 		config = function()
 			require("FTerm").setup({
@@ -952,6 +845,37 @@ require("lazy").setup({
 		end,
 	},
 	{ "liuchengxu/vim-clap" }, -- remenber to run: Clap install-binary
+    {
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			-- code
+			require("nvim-treesitter.configs").setup {
+				highlight = {
+					enable = true,
+					-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+					-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+					-- Using this option may slow down your editor, and you may see some duplicate highlights.
+					-- Instead of true it can also be a list of languages
+					additional_vim_regex_highlighting = false,
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "gnn", -- set to `false` to disable one of the mappings
+						node_incremental = "grn",
+						scope_incremental = "grc",
+						node_decremental = "grm",
+					},
+				},
+				indent = {
+					enable = true
+				},
+			}
+		end
+
+	}
+
 	-- LazyEnd
 })
 
